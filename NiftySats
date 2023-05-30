@@ -1,0 +1,6 @@
+ .
+ ├── ...
+ └── collections
+     └── [niftysats]
+          ├── inscriptions.json
+          └── meta.json
