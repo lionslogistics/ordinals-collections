@@ -17,3 +17,7 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate-collections.js
+      - name: Check formatting
+        run: |
+          node scripts/format-collections.js
+          git diff --exit-code collections.json || (echo "ERROR: collections.json is not formatted. Run: node scripts/format-collections.js" && exit 1)
