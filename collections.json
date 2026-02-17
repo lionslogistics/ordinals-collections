@@ -1041,6 +1041,12 @@
     "slug": "taprootwitches"
   },
   {
+    "name": "Taproot Wizards",
+    "type": "gallery",
+    "id": "13bc906cb96497ca1ce835b098e3c6e45ec4ed77afdbe92f9b64a299649ca7fbi0",
+    "slug": "taproot_wizards"
+  },
+  {
     "name": "The Astronomer's Daughter",
     "type": "parent",
     "ids": [
