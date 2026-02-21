@@ -752,8 +752,7 @@
     "name": "OCM Katoshi Classic by OnChainMonkey®",
     "type": "parent",
     "ids": [
-      "297c86f6d25866c4d43355347c25cc36a2843f09d9dc4020ddf4725c05226e10i1",
-      "297c86f6d25866c4d43355347c25cc36a2843f09d9dc4020ddf4725c05226e10i0"
+      "297c86f6d25866c4d43355347c25cc36a2843f09d9dc4020ddf4725c05226e10i1"
     ],
     "slug": "katoshi-classic"
   },
@@ -761,7 +760,6 @@
     "name": "OCM Katoshi Prime by OnChainMonkey®",
     "type": "parent",
     "ids": [
-      "10858dda62f466db07ba54e6ed2e29768ebff6ddb86f91c21bf8d0970d65f4d4i1",
       "10858dda62f466db07ba54e6ed2e29768ebff6ddb86f91c21bf8d0970d65f4d4i0"
     ],
     "slug": "katoshi-prime"
