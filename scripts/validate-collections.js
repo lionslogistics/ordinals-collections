@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 
 const VALID_TYPES = ['parent', 'gallery']
 const INSCRIPTION_ID_RE = /^[a-f0-9]{64}i\d+$/
+const VALID_KEYS = new Set(['name', 'type', 'slug', 'id', 'ids'])
 
 let errors = 0
 
@@ -32,18 +33,29 @@ for (let i = 1; i < collections.length; i++) {
   }
 }
 
-// Check for duplicate slugs
+// Check for duplicate slugs and names
 const slugs = new Set()
+const names = new Set()
 for (const entry of collections) {
   if (slugs.has(entry.slug)) {
     error(`Duplicate slug: "${entry.slug}"`)
   }
   slugs.add(entry.slug)
+
+  if (names.has(entry.name)) {
+    error(`Duplicate name: "${entry.name}"`)
+  }
+  names.add(entry.name)
 }
 
 // Validate each entry
 for (const entry of collections) {
   const label = entry.slug || entry.name || '(unknown)'
+
+  const unexpected = Object.keys(entry).filter(k => !VALID_KEYS.has(k))
+  if (unexpected.length > 0) {
+    error(`[${label}] unexpected keys: ${unexpected.join(', ')}`)
+  }
 
   if (typeof entry.name !== 'string' || !entry.name.trim()) {
     error(`[${label}] missing or empty name`)
@@ -57,6 +69,10 @@ for (const entry of collections) {
 
   if (typeof entry.slug !== 'string' || !entry.slug.trim()) {
     error(`[${label}] missing or empty slug`)
+  } else if (entry.slug !== entry.slug.toLowerCase()) {
+    error(`[${label}] slug must be lowercase: "${entry.slug}"`)
+  } else if (!/^[a-z0-9_-]+$/.test(entry.slug)) {
+    error(`[${label}] slug contains invalid characters: "${entry.slug}" (only lowercase alphanumeric, hyphens, underscores)`)
   }
 
   if (entry.type === 'parent') {
