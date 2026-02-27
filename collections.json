@@ -316,6 +316,12 @@
     "slug": "commanderdoug"
   },
   {
+    "name": "Cursed Fomojis",
+    "type": "gallery",
+    "id": "2534a9b3c73b55a295b17754990d42db049e7d46d394cc87b3c506d93e52c4e8i0",
+    "slug": "cursed-fomojis"
+  },
+  {
     "name": "Dead Doges",
     "type": "parent",
     "ids": [
@@ -448,6 +454,12 @@
       "525484b62626a7a117a0319b86a736b9aa69d30d94573ddfcdb280b2dd34142ei0"
     ],
     "slug": "fluid_passes"
+  },
+  {
+    "name": "Fomojis 2.0",
+    "type": "gallery",
+    "id": "c6c11d26aaf9e1ee9d0b55060276c8e74c80a7b8ff9a1b1d9f47320f514ed489i0",
+    "slug": "fomojis-2-0"
   },
   {
     "name": "Frontline",
