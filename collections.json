@@ -847,6 +847,12 @@
     "slug": "ordigallery-pass"
   },
   {
+    "name": "Ordinal Kois",
+    "type": "gallery",
+    "id": "61c77de91b9068ea13377b5e5e56bf620e36e98f2fe90be17b52b2b78feb3992i0",
+    "slug": "ordinalkois"
+  },
+  {
     "name": "Ordinal SigmaX",
     "type": "parent",
     "ids": [
