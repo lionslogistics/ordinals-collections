@@ -8,14 +8,6 @@
     "slug": "alkaneimperium"
   },
   {
-    "name": "Recursions by Billy Restey",
-    "type": "parent",
-    "ids": [
-      "4799479ecdc3f5e23904a4db240310490248aae09c1b449cc8978fb56594d8a5i0"
-    ],
-    "slug": "recursions"
-  },
-  {
     "name": "$DOG | Ordinals - SZN I Genesis",
     "type": "parent",
     "ids": [
@@ -985,6 +977,14 @@
       "3e336a4c7376df89a37c3c218a4eeec6e05fd47e14cc84c7e1db97b552e89622i0"
     ],
     "slug": "reality_exe"
+  },
+  {
+    "name": "Recursions by Billy Restey",
+    "type": "parent",
+    "ids": [
+      "4799479ecdc3f5e23904a4db240310490248aae09c1b449cc8978fb56594d8a5i0"
+    ],
+    "slug": "recursions"
   },
   {
     "name": "Rug Lords",
