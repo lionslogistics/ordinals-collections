@@ -1,28 +1,44 @@
 name: Slug conflict review
 
 on:
-  pull_request:
+  pull_request_target:
     paths:
       - collections.json
+
+permissions:
+  pull-requests: write
 
 jobs:
   check-slugs:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
+      - name: Save base collections.json and trusted scripts
+        run: |
+          cp collections.json /tmp/base-collections.json
+          cp -r scripts /tmp/trusted-scripts
+          cp -r legacy /tmp/trusted-legacy
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Restore trusted scripts and legacy data
+        run: |
+          cp -r /tmp/trusted-scripts/* scripts/
+          cp -r /tmp/trusted-legacy/* legacy/
+
       - name: Check slug conflicts
         id: check
         run: |
-          BASE_JSON=$(git show origin/${{ github.base_ref }}:collections.json)
+          BASE_JSON=$(cat /tmp/base-collections.json)
           OUTPUT=$(BASE_COLLECTIONS_JSON="$BASE_JSON" node scripts/check-slug-conflicts.js)
           echo "result<<EOF" >> "$GITHUB_OUTPUT"
           echo "$OUTPUT" >> "$GITHUB_OUTPUT"
