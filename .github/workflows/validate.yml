@@ -8,16 +8,33 @@ on:
     paths:
       - collections.json
 
+permissions:
+  contents: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: node scripts/validate-collections.js
+      - name: Format and auto-fix
+        if: github.event_name == 'pull_request'
+        run: |
+          node scripts/format-collections.js
+          if ! git diff --quiet collections.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add collections.json
+            git commit -m "Auto-format collections.json"
+            git push
+          fi
       - name: Check formatting
+        if: github.event_name == 'push'
         run: |
           node scripts/format-collections.js
           git diff --exit-code collections.json || (echo "ERROR: collections.json is not formatted. Run: node scripts/format-collections.js" && exit 1)
